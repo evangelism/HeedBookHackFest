@@ -1,0 +1,10 @@
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "Microsoft.ProjectOxford.Common": "1.0.324",
+        "Microsoft.ProjectOxford.Face": "1.2.5"
+      }
+    }
+   }
+}

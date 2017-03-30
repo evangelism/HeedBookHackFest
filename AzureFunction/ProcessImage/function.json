@@ -1,0 +1,20 @@
+{
+  "bindings": [
+    {
+      "name": "InputFace",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "frames/{name}",
+      "connection": "heedbookhackfest_STORAGE"
+    },
+    {
+      "type": "apiHubTable",
+      "name": "FaceData",
+      "dataSetName": "default",
+      "tableName": "FaceEmotion",
+      "connection": "sql_SQL",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
