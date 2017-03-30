@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="azure-storage.common.js"></script>
+    <script src="azure-storage.blob.js"></script>
+</head>
+<body>
+    <p>
+        <label><b>Storage account:</b> </label> <input type="text" id="account" />
+        <label><b>SAS Token:</b> </label> <input type="text" id="sas" />
+    </p>
+    <p>
+        <p> <input type="file" id="files" name="file" onclick="displayProcess(0)" /> </p>
+        Click <button id="upload-button"  onclick="uploadBlobByStream(false)">UploadBlob</button> button to upload a local file to current container after selecting a file:
+    </p>
+        <div> Uploaded Bytes: <font id="read"> </font> </div>
+        <div class="progress">
+            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" 
+                 aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                0%
+            </div>
+        </div>
+
+
+    </p>
+
+
+    <script src="./azurestoragejs/bundle/azure-storage.common.js"></script>
+    <script src="./azurestoragejs/bundle/azure-storage.blob.js"></script>
+
+    <script>
+        // Provides a Stream for a file in webpage, inheriting from NodeJS Readable stream.
+        var Stream = require('stream');
+        var util = require('util');
+        var Buffer = require('buffer').Buffer;
+
+        function FileStream(file, opt) {
+            Stream.Readable.call(this, opt);
+
+            this.fileReader = new FileReader(file);
+            this.file = file;
+            this.size = file.size;
+            this.chunkSize = 1024 * 1024 * 4; // 4MB
+            this.offset = 0;
+            var _me = this;
+
+            this.fileReader.onloadend = function loaded(event) {
+                var data = event.target.result;
+                var buf = Buffer.from(data);
+                _me.push(buf);
+            }
+        }
+        util.inherits(FileStream, Stream.Readable);
+        FileStream.prototype._read = function () {
+            if (this.offset > this.size) {
+                this.push(null);
+            } else {
+                var end = this.offset + this.chunkSize;
+                var slice = this.file.slice(this.offset, end);
+                this.fileReader.readAsArrayBuffer(slice);
+                this.offset = end;
+            }
+        };
+    </script>
+
+    <script>
+        var account = document.getElementById('account').value;
+        var sas = document.getElementById('sas').value;
+        var container = 'frames';
+        var blobUri = '';
+
+        function checkParameters() {
+            account = document.getElementById('account').value;
+            sas = document.getElementById('sas').value;
+
+            if (account == null || account.length < 1) {
+                alert('Please enter a valid storage account name!');
+                return false;
+            }
+            if (sas == null || sas.length < 1) {
+                alert('Please enter a valid SAS Token!');
+                return false;
+            }
+
+            return true;
+        }
+
+        function getBlobService() {
+            if (!checkParameters())
+                return null;
+
+            blobUri = 'https://' + account + '.blob.core.windows.net';
+            var blobService = AzureStorage.createBlobServiceWithSas(blobUri, sas).withFilter(new AzureStorage.ExponentialRetryPolicyFilter());
+            return blobService;
+        }
+
+        function refreshContainer() {
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            document.getElementById('containers').innerHTML = 'Loading...';
+            blobService.listContainersSegmented(null, function (error, results) {
+                if (error) {
+                    alert('List container error, please open browser console to view detailed error');
+                    console.log(error);
+                } else {
+                    var output = [];
+                    output.push('<tr>',
+                        '<th>ContainerName</th>',
+                        '<th>ContainerETag</th>',
+                        '<th>LastModified</th>',
+                        '<th>Operations</th>',
+                        '</tr>');
+                    if (results.entries.length < 1) {
+                        output.push('<tr><td>Empty results...</td></tr>');
+                    }
+                    for (var i = 0, container; container = results.entries[i]; i++) {
+                        output.push('<tr>',
+                            '<td>', container.name, '</td>',
+                            '<td>', container.etag, '</td>',
+                            '<td>', container.lastModified, '</td>',
+                            '<td>', '<button class="btn btn-xs btn-danger" onclick="deleteContainer(\'', container.name, '\')">Delete</button> ',
+                            '<button class="btn btn-xs btn-success" onclick="viewContainer(\'', container.name, '\')">Select</button>', '</td>',
+                            '</tr>');
+                    }
+                    document.getElementById('containers').innerHTML = '<table class="table table-condensed table-bordered">' + output.join('') + '</table>';
+                }
+            });
+        }
+
+        function deleteContainer(name) {
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            blobService.deleteContainerIfExists(name, function (error, result) {
+                if (error) {
+                    alert('Delete container failed, open brower console for more detailed info.');
+                    console.log(error);
+                } else {
+                    alert('Delete ' + name + ' successfully!');
+                    refreshContainer();
+                }
+            });
+        }
+
+        function createContainer() {
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            var container = document.getElementById('newcontainer').value;
+            if (!AzureStorage.Validate.containerNameIsValid(container, function (err, res) { })) {
+                alert('Invalid container name!');
+                return;
+            }
+
+            blobService.createContainerIfNotExists(container, function (error, result) {
+                if (error) {
+                    alert('Create container failed, open brower console for more detailed info.');
+                    console.log(error);
+                } else {
+                    alert('Create ' + container + ' successfully!');
+                    refreshContainer();
+                }
+            });
+        }
+
+        function viewContainer(selectedContainer) {
+            container = selectedContainer;
+            document.getElementById('container').value = container;
+            alert('Selected ' + container + ' !');
+            refreshBlobList();
+        }
+
+        function refreshBlobList() {
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            document.getElementById('result').innerHTML = 'Loading...';
+            blobService.createContainerIfNotExists(container, function (error, result) {
+                if (error) {
+                    alert('createContainerIfNotExists error, please open browser console to view detailed error');
+                    console.log(error);
+                } else {
+                    blobService.listBlobsSegmented(container, null, function (error, results) {
+                        if (error) {
+                            alert('List blob error, please open browser console to view detailed error');
+                            console.log(error);
+                        } else {
+                            var output = [];
+                            output.push('<tr>',
+                                '<th>BlobName</th>',
+                                '<th>ContentLength</th>',
+                                '<th>LastModified</th>',
+                                '<th>Operations</th>',
+                                '</tr>');
+                            if (results.entries.length < 1) {
+                                output.push('<tr><td>Empty results...</td></tr>');
+                            }
+                            for (var i = 0, blob; blob = results.entries[i]; i++) {
+                                output.push('<tr>',
+                                    '<td>', blob.name, '</td>',
+                                    '<td>', blob.contentLength, '</td>',
+                                    '<td>', blob.lastModified, '</td>',
+                                    '<td>', '<button class="btn btn-xs btn-danger" onclick="deleteBlob(\'', blob.name, '\')">Delete</button> ',
+                                    '<a class="btn btn-xs btn-success" href="', blobUri + '/' + container + '/' + blob.name + sas, '" download>Download</a>', '</td>',
+                                    '</td>',
+                                    '</tr>');
+                            }
+                            document.getElementById('result').innerHTML = '<table class="table table-condensed table-bordered">' + output.join('') + '</table>';
+                        }
+                    });
+                }
+            })
+        }
+
+        function deleteBlob(blob) {
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            blobService.deleteBlobIfExists(container, blob, function (error, result) {
+                if (error) {
+                    alert('Delete blob failed, open brower console for more detailed info.');
+                    console.log(error);
+                } else {
+                    alert('Delete ' + blob + ' successfully!');
+                    refreshBlobList();
+                }
+            });
+        }
+
+        function displayProcess(process) {
+            document.getElementById("progress").style.width = process + '%';
+            document.getElementById("progress").innerHTML = process + '%';
+        }
+
+        function uploadBlobByStream(checkMD5) {
+            var files = document.getElementById('files').files;
+            if (!files.length) {
+                alert('Please select a file!');
+                return;
+            }
+            var file = files[0];
+
+            var blobService = getBlobService();
+            if (!blobService)
+                return;
+
+            var btn = document.getElementById("upload-button");
+            btn.disabled = true;
+            btn.innerHTML = "Uploading";
+
+            var fileStream = new FileStream(file);
+
+            // Make a smaller block size when uploading small blobs
+            var blockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
+            var options = {
+                storeBlobContentMD5: checkMD5,
+                blockSize: blockSize
+            };
+            blobService.singleBlobPutThresholdInBytes = blockSize;
+
+            var finishedOrError = false;
+            var speedSummary = blobService.createBlockBlobFromStream(container, file.name, fileStream, file.size, options, function (error, result, response) {
+                finishedOrError = true;
+                btn.disabled = false;
+                btn.innerHTML = "UploadBlob";
+                if (error) {
+                    alert('Upload filed, open brower console for more detailed info.');
+                    console.log(error);
+                    displayProcess(0);
+                } else {
+                    displayProcess(100);
+                    setTimeout(function () { // Prevent alert from stopping UI progress update
+                        alert('Upload successfully!');
+                    }, 1000);
+                    refreshBlobList();
+                }
+            });
+
+            function refreshProgress() {
+                setTimeout(function () {
+                    if (!finishedOrError) {
+                        var process = speedSummary.getCompletePercent();
+                        displayProcess(process);
+                        refreshProgress();
+                    }
+                }, 200);
+            }
+            refreshProgress();
+        }
+    </script>
+
+</body>
+</html>

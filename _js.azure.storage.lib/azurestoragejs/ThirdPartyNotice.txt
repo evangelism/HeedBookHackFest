@@ -1,0 +1,375 @@
+------------------------------------------- START OF THIRD PARTY NOTICE -----------------------------------------
+This file is based on or incorporates material from the projects listed below (Third Party Programs). The original copyright notice and the license under which Microsoft received such Third Party Programs, are set forth below. Such licenses and notices are provided for informational purposes only. 
+**********
+Aws-sign 2.0.6.0, Copyright © 2010 LearnBoost 
+Caseless 0.11.0,
+Forever-agent 0.6.1, Copyright © Mikeal Rogers (http://www.futurealoof.com)
+Oauth-sign 0.8.2, Copyright © Mikeal Rogers (http://www.futurealoof.com)
+Request 2.74.0, Copyright © Mikeal Rogers (http://www.futurealoof.com)
+Tunnel-agent 0.4.3, Copyright © Mikeal Rogers (http://www.futurealoof.com)
+
+Apache 2.0 License 
+Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the Apache Version 2.0 License for specific language governing permissions and limitations under the License. 
+**********
+Jsbn 0.1.0, Copyright © 2003-2005 Tom Wu. All rights reserved.
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+IN NO EVENT SHALL TOM WU BE LIABLE FOR ANY SPECIAL, INCIDENTAL,
+INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER
+RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF
+THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+In addition, the following condition applies:
+All redistributions must retain an intact copy of this copyright notice
+and disclaimer.
+
+**********
+Sax-js 0.5.2, Copyright © Isaac Z. Schlueter and Contributors
+
+The ISC License
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+==
+
+`String.fromCodePoint` by Mathias Bynens used according to terms of MIT
+
+License, as follows:
+
+Copyright © Mathias Bynens <https://mathiasbynens.be/>
+
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+**********
+Level-js 2.2.4, Copyright © Max Ogden
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**********
+ieee754 1.1.8, Copyright (c) 2008, Fair Oaks Labs, Inc. All rights reserved. 
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met: 
+
+Redistributions of source code must retain the above copyright notice, 
+this list of conditions and the following disclaimer. 
+
+Redistributions in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation 
+and/or other materials provided with the distribution. 
+
+Neither the name of Fair Oaks Labs, Inc. nor the names of its contributors 
+may be used to endorse or promote products derived from this software 
+without specific prior written permission. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE. 
+
+**********
+Hawk 3.1.3, Copyright © 2012-2016, Eran Hammer & Project contributors. All rights reserved.
+Qs 6.2.1, Copyright © 2014 Nathan LaFreniere and other contributors. All rights reserved.
+json-schema 0.2.3, Copyright © 2005-2016, The JS Foundation
+bcrypt-pbkdf 1.0.0
+asn1.js 4.9.0, Copyright © 2014, GMO GlobalSign, Copyright © 2015-2017, Peculiar Ventures. All rights reserved. Author 2014-2017, Yury Strozhevsky
+ 
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+The names of any contributors may not be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**********
+Tough-cookie 2.3.2, Copyright © 2015, Salesforce.com, Inc. All right reserved.
+
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of Salesforce.com nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+The following exceptions apply:
+
+
+`public_suffix_list.dat` was obtained from
+<https://publicsuffix.org/list/public_suffix_list.dat> via
+<http://publicsuffix.org>. The license for this file is MPL/2.0. The header of
+that file reads as follows:
+
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+**********
+
+browserify-sign 4.0.0, Copyright © 2014-2015 Calvin Metcalf and browserify-sign contributors
+inherits 2.0.3, Copyright © Isaac Z. Schueter
+minimalistic-assert 1.0.0
+parse-asn1 5.0.0
+har-validator 2.0.6, Copyright © 2015 Ahmad Nassri
+inherits 2.0.3, Copyright © Isaac Z. Schlueter
+json-stringify-safe 5.0.1, Copyright © Isaac Z. Schueter and Contributors
+once 1.4.0, Copyright © Isaac Z. Schueter and Contributors
+wrappy 1.0.2, Copyright © Isaac Z. Schueter and Contributors
+
+
+The ISC License
+
+Permission to use, copy, modify, and/or distribute this software for any 
+purpose with or without fee is hereby granted, provided that the above 
+copyright notice and this permission notice appear in all copies. 
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR 
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN 
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF 
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+**********
+Ripemd160 1.0.1, Copyright © 2016 crypto-browserify
+assert 1.3.0, Copyright Joyent, Inc. and other Node contributors. All rights reserved.
+base64-js 1.2.0, Copyright © 2014 
+bn.js 4.11.6, Copyright © 2015 Fedor Indutny
+brorand 1.0.6, Copyright © 2014 Fedor Indutny
+browserify-aes 1.0.6, Copyright © 2014-2015 browserify-aes contributors
+browserify-cipher 1.0.0, Copyright © Calvin Metcalf 
+browserify-des 1.0.0, Copyright © Calvin Metcalf
+browserify-rsa 4.0.1, Copyright © 2014-2016 Calvin Metcalf & contributors
+browserify-zlib 0.1.4, Copyright © 2014-2015 Devon Govett
+browser-resolve 1.11.2,  Copyright © 2013-2015 Roman Shtylman
+buffer 4.9.1, Copyright © Feross Aboukhadijeh, and other contributors
+buffer-shims 1.0.0, Copyright © 2016 Calvin Metcalf
+buffer-xor 1.0.3, Copyright © 2015 Daniel Cousens
+builtin-status-codes 2.0.0, Copyright © Ben Drucker
+cipher-base 1.0.3, Copyright © 2016 Calvin Metcalf
+core-util-is 1.0.2, Copyright Node.js contributors. All rights reserved.
+create-ecdh 4.0.0,
+create-hash 1.1.2, Copyright © 2016 Calvin Metcalf
+create-hmac 1.1.4, 
+crypto-browserify 3.11.0, Copyright © 2013 Dominic Tarr
+des.js 1.0.0, Copyright © 2015 Fedor Indutny 
+diffie-hellman 5.0.2, 
+elliptic 6.3.2, Copyright © 2014 Fedor Indutny
+events 1.1.1, Copyright © Joyent, Inc. and other Node contributors
+evp_bytestokey 1.0.0, Copyright © Calvin Metcalf
+hash.js 1.0.3, Copyright © 2014 Febor Indutny
+https-browserify 0.0.1, Copyright © James Halliday
+isarray 1.0.0, Copyright © 2013 Julian Gruber
+is-buffer 1.1.4, Copyright © Feross Aboukhadijeh
+miller-rabin 4.0.0, Copyright © 2014 Fedor Indutny 
+os-browserify 0.1.2, Copyright © 2016 CoderPuppy
+pako 0.2.9, Copyright © 2014-2016 Vitaly Puzrin
+path-browserify 0.0.0, Copyright © James Halliday
+pbkdf2 3.0.9, Copyright © 2014 Daniel Cousens
+process 0.11.9, Copyright © 2013 Roman Shtylman
+process-nextick-args 1.0.7, Copyright © 2015 Calvin Metcalf
+public-encrypt 4.0.0, 
+punycode 1.4.1, Copyright © Mathias Bynens
+randombytes 2.0.3, 
+readable-stream 2.2.2, Copyright © Node.js contributors. All rights reserved.
+sha.js 2.4.8, Copyright © 2013-2014 sha.js contributors
+stream-browserify 2.0.1, Copyright © James Halliday
+stream-http 2.5.0, Copyright © 2015 John Hiesey
+string_decoder 0.10.31, Copyright Joyent, Inc. and other Node contributors.
+to-arraybuffer 1.0.1, Copyright © 2016 John Hiesey 
+url 0.11.0, Copyright Joyent, Inc. and other Node contributors.
+util 0.10.3, Copyright Joyent, Inc. and other Node contributors. All rights reserved.
+util-deprecate 1.0.2 Copyright © 2014 Nathan Rajlich
+vm-browserify 0.0.4 
+xtend 4.0.1 
+abstract-leveldown 0.12.4 Copyright © 2012-2015 AbstractLevelDOWN contributors.
+asn1 0.2.3 Copyright © 2011 Mark Cavage. All rights reserved.
+assert-plus 0.2.0 Copyright © 2012 Mark Cavage 
+aws4 1.5.0 Copyright © 2013 Michael Hart
+bl 1.1.2 Copyright © 2016 Calvin Metcalf
+buffer-shims 1.0.0 Copyright © 2016 Calvin Metcalf 
+clone 0.1.19 Copyright © 2011-2016 Paul Vorback and contributors. 
+combined-stream 1.0.5 Copyright © 2011 Debuggable Limited 
+concat-stream 1.6.0 Copyright © 2013 Max Ogden 
+core-util-is 1.0.2 Copyright Node.js contributors. All rights reserved.
+deferred-leveldown 0.2.0 Copyright © 2013-2015 DeferredLevelDOWN contributors.
+delayed-stream 1.0.0 Copyright © 2011 Debuggable Limited
+ecc-jsbn 0.1.1 Copyright © 2014 Jeremie Miller
+errno 0.1.4 Copyright © 2012-2015 Rod Vagg 
+foreach 2.0.5 Copyright © 2013 Manuel Stofer 
+form-data 1.0.1 Copyright © 2012 Felix Geisendorfer and contributors. 
+generate-function 2.0.0 Copyright © 2014 Mathias Buus
+generate-object-property 1.2.0 Copyright © 2014 Mathias Buus
+hash-base 3.0.3 Copyright © 2016 Kirill Fomichev
+http-signature 1.1.1 Copyright © Joyent, Inc. All rights reserved. 
+idb-wrapper 1.7.1 Copyright © 20112016 Jen Arps 
+isarray 1.0.0 Copyright © 2013 Julian Gruber 
+isbuffer 0.0.0 Copyright © 2013 Julian Gruber
+is-my-json-valid 2.15.0 Copyright © 2014 Mathias Buus 
+is-property 1.0.2 Copyright © 2013 Mikola Lysenko 
+isstream 0.1.2 Copyright © 2015 Rod Vagg 
+is-typedarray 1.0.0 
+jodid25519 1.0.2 Copyright © 2012 Ron Garret, Copyright © 2007, 2013, 2014 Michele Bini, Copyright © 2014 Mega Limited 
+json-edm-parser 0.1.2 Copyright © 2016 Yang Xia 
+jsonparse 1.2.0 Copyright © 2011-2012 Tim Caswell 
+jsonpointer 4.0.1 Copyright © 2011-2015 Jan Lehnardt & Marc Bachmann 
+jsprim 1.3.1 Copyright © 2012 Joyent, Inc. All rights reserved. 
+level-fix-range 1.0.2 Copyright © 2013 Dominic Tarr 
+level-peek 1.0.6 Copyright © 2013 Dominic Tarr 
+level-sublevel 5.2.3 Copyright © 2013 Dominic Tarr
+levelup 0.18.6 Copyright © 2012-2016 LevelUp contributors. 
+ltgt 2.1.3 Copyright © 2014 Dominic Tarr 
+md5.js 1.3.4 Copyright © 2016 Kirill Fomichev 
+mime-db 1.25.0 Copyright © 2014 Jonathan Ong 
+mime-types 2.1.13 Copyright © 2014 Jonathan Ong, Copyright © 2015 Douglas Christopher Wilson
+object-keys 0.2.0 Copyright © 2013 Jordan Harband 
+octal 1.0.0 Copyright © 2015 Mathias Buus 
+pinkie 2.0.4 Copyright © Vsevolod Strukchinsky
+pinkie-promise 2.0.1 Copyright © Vsevolod Strukchinsky
+process-nextick-args 1.0.7 Copyright © 2015 Calvin Metcalf 
+prr 0.0.0 Copyright © 2013 Rod Vagg 
+readable-stream 2.0.6 Copyright Node.js contributors. Copyright Joyent, Inc. and other Node contributors. All rights reserved. 
+sshpk 1.10.1 Copyright Joyent, Inc. All rights reserved.
+string_decoder 0.10.31 Copyright Joyent, Inc. and other Node contributors. 
+string-range 1.2.2 Copyright © 2013 Dominic Tarr 
+stringstream 0.0.5 Copyright © 2012 Michael Hart
+typedarray 0.0.6 Copyright © 2010, Linden Research, Inc., Copyright © 2012 Joshua Bell 
+typedarray-to-buffer 1.0.4 Copyright © Feross Aboukhadijeh 
+util-deprecate 1.0.2, Copyright © 2014 Nathan Rajlich
+xmlbuilder 0.4.3, Copyright © 2013 Ozgur Ozcitak
+xtend 4.0.1, Copyright © 2012-2014 Raynos
+indexof 0.0.1, 
+querystring-es3 0.2.1, Copyright © 2012 Iraki Goalishvili. All rights reserved.
+browserify-fs 1.0.0, 
+browserify-mime 1.2.9, Copyright © Benjamin Thomas, Robert Kieffer
+extend 1.2.1, Copyright © 2014 Stefan Thomas
+extsprintf 1.0.2, Copyright © 2012 Joyent, Inc. All right reserved.
+fwd-stream 1.0.4, 
+is 0.2.7, Copyright © 2013 Enrico Marino, Copyright © 2014 Enrico Marino and Jordan Harband
+level-blobs 0.1.7, Copyright © 2014 Mathias Buus
+level-filesystem 1.2.0, 
+level-hooks 4.5.0, Copyright © 2012 Dominic Tarr
+node-uuid 1.4.7, Copyright © 2010-2016 Robert Kieffer and other contributors
+underscore 1.4.4, Copyright © 2009-2017 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+validator 3.22.2, Copyright © 2016 Chris O’Hara
+verror 1.3.6, Copyright © 2016 Joyent, Inc. All rights reserved. 
+xml2js 0.2.7, Copyright © 2010, 2011, 2012, 2013. All rights reserved.
+
+The MIT License (MIT)
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions: 
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software. 
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE. 
+
+**********
+tweetnacl 0.14.5, List of authors.
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org>
+
+----------------------------------------------- END OF THIRD PARTY NOTICE ------------------------------------------
+
