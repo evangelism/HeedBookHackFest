@@ -1,5 +1,5 @@
 
-#Azure Storage JavaScript Client Library for Browsers
+# Azure Storage JavaScript Client Library for Browsers
 
 The copy from https://github.com/Azure/azure-storage-node#azure-storage-javascript-client-library-for-browsers
 for testing purposes
