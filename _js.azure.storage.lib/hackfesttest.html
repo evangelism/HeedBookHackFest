@@ -5,10 +5,6 @@
 </head>
 <body>
     <p>
-        <label><b>Storage account:</b> </label> <input type="text" id="account" />
-        <label><b>SAS Token:</b> </label> <input type="text" id="sas" />
-    </p>
-    <p>
         <p> <input type="file" id="files" name="file" onclick="displayProcess(0)" /> </p>
         Click <button id="upload-button"  onclick="uploadBlobByStream(false)">UploadBlob</button> button to upload a local file to current container after selecting a file:
     </p>
@@ -63,14 +59,29 @@
     </script>
 
     <script>
-        var account = document.getElementById('account').value;
-        var sas = document.getElementById('sas').value;
+        var account = 'heedbookhackfest';
+        var sas = '';
         var container = 'frames';
         var blobUri = '';
 
+        function getSAS()
+        {
+            var client = new HttpClient();
+            client.get('http://heedbookwebapptest.azurewebsites.net/blob/BlobSas', function (response) {
+
+                var result = response.toString();
+
+                return result;
+
+            });    
+
+        }
+
         function checkParameters() {
-            account = document.getElementById('account').value;
-            sas = document.getElementById('sas').value;
+            //account = document.getElementById('account').value;
+            //sas = getSAS();
+
+
 
             if (account == null || account.length < 1) {
                 alert('Please enter a valid storage account name!');
@@ -85,6 +96,7 @@
         }
 
         function getBlobService() {
+
             if (!checkParameters())
                 return null;
 
@@ -93,6 +105,7 @@
             return blobService;
         }
 
+        
         function refreshContainer() {
             var blobService = getBlobService();
             if (!blobService)
@@ -245,52 +258,80 @@
             }
             var file = files[0];
 
-            var blobService = getBlobService();
-            if (!blobService)
-                return;
+            
 
-            var btn = document.getElementById("upload-button");
-            btn.disabled = true;
-            btn.innerHTML = "Uploading";
+            var client = new HttpClient();
+            client.get('http://heedbookwebapptest.azurewebsites.net/blob/BlobSas', function (response) {
 
-            var fileStream = new FileStream(file);
+                sas = response.toString();
 
-            // Make a smaller block size when uploading small blobs
-            var blockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
-            var options = {
-                storeBlobContentMD5: checkMD5,
-                blockSize: blockSize
-            };
-            blobService.singleBlobPutThresholdInBytes = blockSize;
+                var blobService = getBlobService();
+                if (!blobService)
+                    return;
 
-            var finishedOrError = false;
-            var speedSummary = blobService.createBlockBlobFromStream(container, file.name, fileStream, file.size, options, function (error, result, response) {
-                finishedOrError = true;
-                btn.disabled = false;
-                btn.innerHTML = "UploadBlob";
-                if (error) {
-                    alert('Upload filed, open brower console for more detailed info.');
-                    console.log(error);
-                    displayProcess(0);
-                } else {
-                    displayProcess(100);
-                    setTimeout(function () { // Prevent alert from stopping UI progress update
-                        alert('Upload successfully!');
-                    }, 1000);
-                    refreshBlobList();
+                var btn = document.getElementById("upload-button");
+                btn.disabled = true;
+                btn.innerHTML = "Uploading";
+
+
+
+                var fileStream = new FileStream(file);
+
+                // Make a smaller block size when uploading small blobs
+                var blockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
+                var options = {
+                    storeBlobContentMD5: checkMD5,
+                    blockSize: blockSize
+                };
+                blobService.singleBlobPutThresholdInBytes = blockSize;
+
+                var finishedOrError = false;
+                var speedSummary = blobService.createBlockBlobFromStream(container, file.name, fileStream, file.size, options, function (error, result, response) {
+                    finishedOrError = true;
+                    btn.disabled = false;
+                    btn.innerHTML = "UploadBlob";
+                    if (error) {
+                        alert('Upload filed, open brower console for more detailed info.');
+                        console.log(error);
+                        displayProcess(0);
+                    } else {
+                        displayProcess(100);
+                        setTimeout(function () { // Prevent alert from stopping UI progress update
+                            alert('Upload successfully!');
+                        }, 1000);
+                        refreshBlobList();
+                    }
+                });
+
+                function refreshProgress() {
+                    setTimeout(function () {
+                        if (!finishedOrError) {
+                            var process = speedSummary.getCompletePercent();
+                            displayProcess(process);
+                            refreshProgress();
+                        }
+                    }, 200);
                 }
+                refreshProgress();
+
             });
 
-            function refreshProgress() {
-                setTimeout(function () {
-                    if (!finishedOrError) {
-                        var process = speedSummary.getCompletePercent();
-                        displayProcess(process);
-                        refreshProgress();
-                    }
-                }, 200);
+            
+        }
+    </script>
+
+    <script>
+        var HttpClient = function () {
+            this.get = function (aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function () {
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
+                }
+
+                anHttpRequest.open("GET", aUrl, true);
+                anHttpRequest.send(null);
             }
-            refreshProgress();
         }
     </script>
 
