@@ -12,7 +12,9 @@ namespace HeedBookWebApp.Models
 
         public DateTime Time  { get; set; }
 
-        public int EmotionType { get; set; }
+        public string EmotionType { get; set; }
+
+        public float EmotionValue { get; set; }
 
         public int DialogId { get; set; }
 
