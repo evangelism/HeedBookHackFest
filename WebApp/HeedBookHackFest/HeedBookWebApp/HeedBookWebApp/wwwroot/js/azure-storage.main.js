@@ -90,7 +90,7 @@ function FileStream(file, opt) {
                             }, 1000);
                         }
                     });
-                }
+                });
 
             }
 

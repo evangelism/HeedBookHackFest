@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Emotions Share";
+}
+
+
+<div>
+    <div style="position:absolute;padding-top: 40px; padding-left: 60px; ">
+        <h1>
+            <span id="positiveshare">0%</span>
+        </h1>
+            <small style="padding-top: 10px;"> положительных<br />эмоций</small>
+        
+    </div>
+    <canvas id="chart"></canvas>
+
+</div>
+
+
+@section Styles {
+    <environment names="Development,Staging,Production">
+
+    </environment>
+}
+
+
+@section Scripts {
+    <environment names="Development,Staging,Production">
+        <script src="~/lib/chart.js/dist/Chart.bundle.js"></script>
+    </environment>
+
+  <script>
+
+      $.getJSON('/api/chart/EmotionShareData/13', function (datares) {
+          var labels = datares.map(function (item) {
+              return item.emotionname;
+          });
+          var dataset = datares.map(function (item) {
+              return item.share;
+          });
+
+          var ctx = document.getElementById("chart");
+          ctx.width = 200;
+          ctx.height = 200;
+
+          var data = {
+              labels: labels,
+              datasets: [
+                  {
+                      data: dataset,
+                      backgroundColor: [
+                          '#ffa700',
+                          '#008744',
+                          '#0057e7',
+                          '#d62d20',
+                      ],
+                  }
+              ]
+          };
+
+
+          var WidgetChart = new Chart(ctx, {
+              type: 'doughnut',
+              data: data,
+              options: {
+                  animation: {
+                      animateScale: true
+                  },
+                  legend: {
+                      display: false
+                  },
+                  cutoutPercentage: 65,
+                  responsive: false,
+              }
+          });
+
+          setInterval(function () {
+              $.getJSON('/api/Chart/EmotionShareData/13', function (datares) {
+                  var dataset = datares.map(function (item) {
+                      return item.share;
+                  });
+                  var nextData = {
+                      datasets: [
+                          {
+                              data: dataset,
+                          }
+                      ]
+                  };
+
+                  data.datasets[0].data = nextData.datasets[0].data;
+                  WidgetChart.update();
+
+                  $("#positiveshare").text(dataset[1]+"%");
+
+              });
+
+          }, 500);
+      });
+
+
+
+
+ </script>
+
+}
+
+
