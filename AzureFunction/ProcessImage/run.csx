@@ -7,6 +7,7 @@ using Microsoft.ProjectOxford.Common.Contract;
 public static async Task Run(Stream InputFace, string name, IAsyncCollector<FaceEmotion> FaceData, TraceWriter log)
 {
     log.Info($"Processing face {name}");
+    var namea = Path.GetFileNameWithoutExtension(name).Split('-');
     var cli = new FaceServiceClient("e28dce81b6e04cab84636b2642562963");
     var res = await cli.DetectAsync(InputFace,false,false,new FaceAttributeType[] { FaceAttributeType.Age, FaceAttributeType.Emotion, FaceAttributeType.Gender});
     var fc = (from f in res
@@ -14,22 +15,22 @@ public static async Task Run(Stream InputFace, string name, IAsyncCollector<Face
               select f).FirstOrDefault();
     if (fc!=null)
     {
-        log.Info($" - recorded face, age={fc.FaceAttributes.Age}");
         var R = new FaceEmotion();
-        R.Time = DateTime.Now;
-        R.FaceEmotionId = int.Parse(Path.GetFileNameWithoutExtension(name));
-        /* var t = GetMainEmotion(fc.FaceAttributes.Emotions);
+        R.Time = DateTime.ParseExact(namea[1],"yyyyMMddHHmmss",System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat);
+        R.DialogId = int.Parse(namea[0]);
+        var t = GetMainEmotion(fc.FaceAttributes.Emotion);
         R.EmotionType = t.Item1;
+        R.FaceEmotionGuidId = Guid.NewGuid();
         R.EmotionValue = (int)(100*t.Item2);
-        */
         R.Sex = fc.FaceAttributes.Gender.ToLower().StartsWith("m");
         R.Age = (int)fc.FaceAttributes.Age;
         await FaceData.AddAsync(R);
+        log.Info($" - recorded face, age={fc.FaceAttributes.Age}, emotion={R.EmotionType}");
     }
     else log.Info(" - no faces found");
 }
  
-public Tuple<string,float> GetMainEmotion(EmotionScores s)
+public static Tuple<string,float> GetMainEmotion(EmotionScores s)
 {
     float m = 0;
     string e = "";
@@ -47,7 +48,7 @@ public Tuple<string,float> GetMainEmotion(EmotionScores s)
 
 public class FaceEmotion
 {
-    public int FaceEmotionId { get; set; }
+    public Guid FaceEmotionGuidId { get; set; }
 
     public DateTime Time  { get; set; }
 

@@ -11,7 +11,7 @@
       "type": "apiHubTable",
       "name": "FaceData",
       "dataSetName": "default",
-      "tableName": "FaceEmotion",
+      "tableName": "FaceEmotionGuid",
       "connection": "sql_SQL",
       "direction": "out"
     }
