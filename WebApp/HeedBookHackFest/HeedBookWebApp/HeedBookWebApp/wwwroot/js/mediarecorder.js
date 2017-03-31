@@ -12,21 +12,23 @@ var recordedVideo = document.querySelector('video#recorded');
 var photo = document.getElementById('photo');
 var canvas = document.getElementById('canvas');
 
-var recordButton = document.querySelector('button#record');
-var playButton = document.querySelector('button#play');
-var downloadButton = document.querySelector('button#download');
-var downloadaudioButton = document.querySelector('button#downloadaudio');
-var takephotoButton = document.querySelector('button#takephoto');
-var downloadphotoButton = document.querySelector('button#downloadphoto');
-var wsButton = document.querySelector('button#ws');
-recordButton.onclick = toggleRecording;
-playButton.onclick = play;
-downloadButton.onclick = download;
-downloadaudioButton.onclick = downloadaudio;
-//takephotoButton.onclick = takephoto;
-downloadphotoButton.onclick = downloadphoto;
-wsButton.onclick = wsconnect;
+//var recordButton = document.querySelector('button#record');
+//var playButton = document.querySelector('button#play');
+//var downloadButton = document.querySelector('button#download');
+//var downloadaudioButton = document.querySelector('button#downloadaudio');
+//var takephotoButton = document.querySelector('button#takephoto');
+//var downloadphotoButton = document.querySelector('button#downloadphoto');
+//var wsButton = document.querySelector('button#ws');
+//recordButton.onclick = toggleRecording;
+//playButton.onclick = play;
+//downloadButton.onclick = download;
+//downloadaudioButton.onclick = downloadaudio;
+////takephotoButton.onclick = takephoto;
+//downloadphotoButton.onclick = downloadphoto;
+//wsButton.onclick = wsconnect;
 
+//var dialogidButton = document.querySelector('button#generatedialogid');
+//dialogidButton.onclick = generatedialogid;
 
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -159,20 +161,20 @@ function downloadaudio() {
     }, 100);
 }
 
+//set input random dialogid value 
+function generatedialogid() {
+    var dialogid = randomint();
+    document.getElementById("dialogid").value = dialogid;
+    return dialogid;
+}
 
-function takephoto2() {
 
-    var ctx = canvas.getContext("2d");
-    canvas.fillStyle = "#AAA";
-    canvas.fillRect(0, 0, 800, 600);
+//random int
+function randomint() {
+    return Math.floor(Math.random() * (100) + 10);
+}
 
-    //var img = document.getElementById("scream");
-    //ctx.drawImage(img, 10, 10);
-    //canvas.getContext('2d').drawImage(gumVideo, 600, 800);
-    //var button = document.getElementById('takephoto1');
-    //var dataURL = canvas.toDataURL('image/png');
-    //button.href = dataURL;
- }
+
 
 //Azure Storage Code -- Start
 
@@ -257,23 +259,31 @@ var HttpClient = function () {
 
 //Azure Storage Code -- End
 
-function takephoto() {
+function startstream() {
     var c = document.getElementById("canvas");
-    var ctx = c.getContext("2d");
+    //var ctx = c.getContext("2d");
     c.getContext('2d').drawImage(gumVideo, 0, 0, 800, 600);
-    var button = document.getElementById("takephotoimg");
-    var dataURL = canvas.toDataURL("image/png");
+    //var button = document.getElementById("takephotoimg");
+    //var dataURL = canvas.toDataURL("image/png");
 
+    dialogNumber = generatedialogid();
+
+    var client = new HttpClient();
+    client.get('http://heedbookwebapptest.azurewebsites.net/blob/BlobSas', function (response) {
+    sas = response.toString();
+
+    emotion_chart(dialogNumber);
+
+    setInterval(function () { 
     
+        c.toBlob(function (blob) {
 
-    c.toBlob(function (blob) {
 
-        
-        var client = new HttpClient();
-        client.get('http://heedbookwebapptest.azurewebsites.net/blob/BlobSas', function (response) {
+            //var client = new HttpClient();
+            //client.get('', function (response) {
 
-            sas = response.toString();
-         
+            //    sas = response.toString();
+
             var blobService = getBlobService();
             if (!blobService)
                 return;
@@ -282,7 +292,7 @@ function takephoto() {
 
             if (!fileStream)
                 return;
-            
+
             // Make a smaller block size when uploading small blobs
             var blockSize = blob.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
             var options = {
@@ -329,18 +339,24 @@ function takephoto() {
                     console.log(error);
                 } else {
                     //add some function if we want to control on interact during uploading
-                    setTimeout(function () { // Prevent alert from stopping UI progress update
-                        alert('Upload successfully!');
-                    }, 1000);
+                    //setTimeout(function () { // Prevent alert from stopping UI progress update
+                    //    alert('Upload successfully!');
+                    //}, 1000);
                 }
             });
 
-        });
+            //});
 
-        
-    },"image/jpeg",0.95);
 
-    button.href = dataURL;
+        }, "image/jpeg", 0.95);
+
+    }, 3000)
+    });
+
+
+
+
+    //button.href = dataURL;
     
 }
 
@@ -360,3 +376,84 @@ function wsconnect() {
 
 }
 
+
+function emotion_chart(dialogid) {
+
+    $.getJSON('/api/chart/EmotionShareData/' + dialogid, function (datares) {
+        var labels = datares.map(function (item) {
+            return item.emotionname;
+        });
+        var dataset = datares.map(function (item) {
+            return item.share;
+        });
+
+        var ctx = document.getElementById("chart");
+        ctx.width = 200;
+        ctx.height = 200;
+
+        var data = {
+            labels: labels,
+            datasets: [
+                {
+                    data: dataset,
+                    backgroundColor: [
+                        '#ffa700',
+                        '#008744',
+                        '#0057e7',
+                        '#d62d20',
+                    ],
+                }
+            ]
+        };
+
+
+        var WidgetChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                animation: {
+                    animateScale: true
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 65,
+                responsive: false,
+            }
+        });
+
+        setInterval(function () {
+            $.getJSON('/api/Chart/EmotionShareData/' + dialogid, function (datares) {
+                var labels = datares.map(function (item) {
+                    return item.emotionname;
+                });
+                var dataset = datares.map(function (item) {
+                    return item.share;
+                });
+                var nextData = {
+                    labels: labels,
+                    datasets: [
+                        {
+                            data: dataset,
+                        }
+                    ]
+                };
+
+                data.datasets[0].data = nextData.datasets[0].data;
+                WidgetChart.update();
+
+                $("#positiveshare").text(dataset[1] + "%");
+
+            });
+
+            $.get('/api/Chart/sex/' + dialogid, function (datares) {
+                $("#sex").text(datares);
+            });
+
+            $.get('/api/Chart/averageage/' + dialogid, function (datares) {
+                $("#averageage").text(datares);
+            });
+
+        }, 500);
+    });
+}

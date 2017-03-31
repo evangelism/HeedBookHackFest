@@ -11,6 +11,10 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-HeedBookWebApp-1bf01d1c-7eb4-441f-a9e8-913cd5dd029a</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\chart_emotion.js" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />

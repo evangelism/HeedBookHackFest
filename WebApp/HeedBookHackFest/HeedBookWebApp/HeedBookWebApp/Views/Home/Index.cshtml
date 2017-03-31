@@ -6,20 +6,48 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="hpanel">
-                <video id="gum" autoplay muted width="800" height="600"></video>
-                <video id="recorded" autoplay loop></video>
+                <br/>
+                <button onclick="startstream();" id="takephotoimg" download="my-file-name.png" class="btn-success">Start Session</button>
+                @*<button id="generatedialogid" >DialiD</button>*@
+                <br/>
+                <video id="gum" autoplay muted width="600" height="500"></video>
+                @*<video id="recorded" autoplay loop></video>*@
                 <div>
-                    <a onclick="takephoto();" id="takephotoimg" download="my-file-name.png">Take Photo</a>
-                    <button id="downloadphoto">Download Photo</button>
+                    @*<button id="downloadphoto">Download Photo</button>
                     <button id="record">Start Recording</button>
                     <button id="play" disabled>Play</button>
                     <button id="download" disabled>Download</button>
                     <button id="downloadaudio" disabled>Download Audio</button>
-                    <button id="ws">WS Connection</button>
+                    <button id="ws">WS Connection</button>*@
                 </div>
-                <canvas id="canvas" width="800" height="600" ></canvas>
+                <input id="dialogid" hidden/>
+                <canvas id="canvas" width="600" height="500" hidden></canvas>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <br/><br />
+            <div>
+                <div style="position:absolute;padding-top: 40px; padding-left: 60px; ">
+                    <h1>
+                        <span id="positiveshare"></span>
+                    </h1>
+                    <small style="padding-top: 10px;"> positive<br />emotions</small>
+                </div>
+                <canvas id="chart"></canvas>
+            </div>
+            <br />
+            <div>
+                <h1>
+                    Sex: <span id="sex"></span>
+                </h1>
+            </div>
+            <br />
+            <div>
+                <h1>
+                    Average age: <span id="averageage"></span>
+                </h1>
             </div>
         </div>
     </div>
@@ -38,7 +66,10 @@
         <script src="~/js/azure-storage.common.min.js"></script>
         <script src="~/js/azure-storage.blob.min.js"></script>
         <script src="~/js/mediarecorder.js"></script>
+        <script src="~/lib/chart.js/dist/Chart.bundle.js"></script>
+        <script src="~/js/chart_emotion.js"></script>
     </environment>
+
 
 }
 
