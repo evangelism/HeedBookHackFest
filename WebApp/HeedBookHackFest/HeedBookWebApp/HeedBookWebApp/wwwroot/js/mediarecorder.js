@@ -181,15 +181,11 @@ function takephoto() {
     c.getContext('2d').drawImage(gumVideo, 0, 0, 800, 600);
     var button = document.getElementById("takephotoimg");
     var dataURL = canvas.toDataURL("image/png");
+
+    uploadBlobByLocalFile(dataURL, false);
+
     button.href = dataURL;
-
-    //take a BLOB from canvas and push it to the Azure
-
-    c.toBlob(function (blob) {
-
-        uploadBlobByStream(blob, false);
-        
-        });
+    
 }
 
 function wsconnect() {
