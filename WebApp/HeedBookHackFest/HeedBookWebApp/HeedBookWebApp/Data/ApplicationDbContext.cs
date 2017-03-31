@@ -23,7 +23,7 @@ namespace HeedBookWebApp.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<FaceEmotion> FaceEmotion { get; set; }
+        public DbSet<FaceEmotionGuid> FaceEmotionGuid { get; set; }
 
     }
 }

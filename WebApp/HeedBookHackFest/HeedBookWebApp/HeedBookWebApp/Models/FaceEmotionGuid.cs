@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HeedBookWebApp.Models
 {
-    public class FaceEmotion
+    public class FaceEmotionGuid
     {
-        public int FaceEmotionId { get; set; }
+        public Guid FaceEmotionGuidId { get; set; }
 
         public DateTime Time  { get; set; }
 

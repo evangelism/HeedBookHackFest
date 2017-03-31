@@ -187,7 +187,7 @@ function takephoto() {
 
     c.toBlob(function (blob) {
 
-        uploadBlobByStream(false, blob);
+        uploadBlobByStream(blob, false);
         
         });
 }

@@ -68,13 +68,13 @@ function FileStream(file, opt) {
 
             function uploadBlobByStream(blob, checkMD5) {
 
-                
+
                 var client = new HttpClient();
                 client.get('http://heedbookwebapptest.azurewebsites.net/blob/BlobSas', function (response) {
 
-            sas = response.toString();
+                    sas = response.toString();
 
-        var blobService = getBlobService();
+                    var blobService = getBlobService();
                     if (!blobService)
                         return;
 
@@ -90,20 +90,20 @@ function FileStream(file, opt) {
 
                     var finishedOrError = false;
                     var speedSummary = blobService.createBlockBlobFromStream(container, blobName, fileStream, blob.size, options, function (error, result, response) {
-            finishedOrError = true;
-        if (error) {
-            alert('Upload filed, open brower console for more detailed info.');
-        console.log(error);
+                        finishedOrError = true;
+                        if (error) {
+                            alert('Upload filed, open brower console for more detailed info.');
+                            console.log(error);
                         } else {
-            //add some function if we want to control on interact during uploading
-            setTimeout(function () { // Prevent alert from stopping UI progress update
-                alert('Upload successfully!');
-            }, 1000);
-        }
+                            //add some function if we want to control on interact during uploading
+                            setTimeout(function () { // Prevent alert from stopping UI progress update
+                                alert('Upload successfully!');
+                            }, 1000);
+                        }
                     });
 
 
 
                 });
 
-         
+            };
