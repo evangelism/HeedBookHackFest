@@ -72,6 +72,10 @@ function FileStream(file, opt) {
 
                     sas = response.toString();
 
+                    alert(fileName);
+
+                    alert(sas);
+
                     var blobService = getBlobService();
                     if (!blobService)
                         return;
@@ -137,3 +141,4 @@ function FileStream(file, opt) {
                 });
 
             };
+
