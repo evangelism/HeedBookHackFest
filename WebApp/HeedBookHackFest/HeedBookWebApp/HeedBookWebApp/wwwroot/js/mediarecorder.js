@@ -182,6 +182,14 @@ function takephoto() {
     var button = document.getElementById("takephotoimg");
     var dataURL = canvas.toDataURL("image/png");
     button.href = dataURL;
+
+    //take a BLOB from canvas and push it to the Azure
+
+    c.toBlob(function (blob) {
+
+        uploadBlobByStream(false, blob);
+        
+        });
 }
 
 function wsconnect() {
