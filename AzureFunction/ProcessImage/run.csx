@@ -8,7 +8,7 @@ public static async Task Run(Stream InputFace, string name, IAsyncCollector<Face
 {
     log.Info($"Processing face {name}");
     var namea = Path.GetFileNameWithoutExtension(name).Split('-');
-    var cli = new FaceServiceClient("e28dce81b6e04cab84636b2642562963");
+    var cli = new FaceServiceClient("<your_face_serice_key>");
     var res = await cli.DetectAsync(InputFace,false,false,new FaceAttributeType[] { FaceAttributeType.Age, FaceAttributeType.Emotion, FaceAttributeType.Gender});
     var fc = (from f in res
               orderby f.FaceRectangle.Width
